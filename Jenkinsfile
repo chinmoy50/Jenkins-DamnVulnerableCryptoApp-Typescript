@@ -49,7 +49,7 @@ pipeline {
                         -H "Client-Secret: ${CLIENT_SECRET}" \
                         -F "projectZipFile=@project.zip" \
                         -F "applicationId=${APPLICATION_ID}" \
-                        -F "scanName=New SCA Scan from Jenkins Pipeline" \
+                        -F "scanName=DamnVulns-TypeScript SCA Scan" \
                         -F "language=typescript" \
                         "${SCA_API_URL}"
                     """, returnStdout: true).trim()
@@ -81,7 +81,7 @@ pipeline {
                         -H "Client-Secret: ${CLIENT_SECRET}" \
                         -F "projectZipFile=@project.zip" \
                         -F "applicationId=${APPLICATION_ID}" \
-                        -F "scanName=New SAST Scan from Jenkins Pipeline" \
+                        -F "scanName=DamnVulns-TypeScript SAST Scan" \
                         -F "language=typescript" \
                         "${SAST_API_URL}"
                     """, returnStdout: true).trim()
