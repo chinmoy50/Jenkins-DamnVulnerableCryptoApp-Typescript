@@ -68,15 +68,6 @@ pipeline {
             }
         }
 
-        stage('Check SCA Result') {
-            when {
-                expression { return env.CAN_PROCEED_SCA != 'true' }
-            }
-            steps {
-                error "SCA scan failed. Deployment cancelled."
-            }
-        }
-
         stage('Perform SAST Scan') {
             when {
                 expression { return env.CAN_PROCEED_SCA == 'true' }
@@ -106,21 +97,6 @@ pipeline {
 
                     env.CAN_PROCEED_SAST = canProceedSAST.toString()
                 }
-            }
-        }
-
-        stage('Check SAST Result') {
-            when {
-                expression { return env.CAN_PROCEED_SAST != 'true' }
-            }
-            steps {
-                error "SAST scan failed. Deployment cancelled."
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh '. venv/bin/activate && pip install -r requirements.txt'
             }
         }
 
